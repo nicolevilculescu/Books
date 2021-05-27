@@ -3,9 +3,29 @@
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
 
+	<!-- <List
+        mode="Delete"
+        delete="handleDelete"
+        headerText="{i18n>homePageTitle}"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{/BooksSet}" >
+        <items>
+            <ObjectListItem
+                title="{Title}, {Author}"> -->
+                    <!-- <firstStatus>
+                        <ObjectStatus text="{
+                            path: 'books>Stock',
+                            formatter: '.formatter.stockText'
+                        }"/>
+                    </firstStatus> -->
+                <!-- </ObjectListItem>
+        </items>
+    </List> -->
+
    <Table id="idBooksTable"
 		items="{
-			path: '/Books',
+			path: '/BooksSet',
 			sorter: {
 				path: 'Title'
 			}
@@ -35,15 +55,15 @@
 				<cells>
 					<ObjectIdentifier
 						title="{Title}"
-						text="{ISBN}"/>
+						text="{BookISBN}"/>
 					<Text text="{Author}" />
 					<Text text="{ 
-							path: 'DatePublished',
+							path: 'PublishingDate',
 							type: 'sap.ui.model.type.Date'
                			}" 
 					/>
 					<Text text="{Language}" />
-					<Text text="{= parseInt(${NubmerAvailableBooks}) }" />
+					<Text text="{= parseInt(${Available}) }" />
 				</cells>
 			</ColumnListItem>
 		</items>
