@@ -53,9 +53,42 @@
               "metadataUrlParams": {
                 "sap-documentation": "heading"
               },
-              "defaultBindingMode": "TwoWay"
+              "defaultBindingMode": "TwoWay",
+              "useBatch": false
             }
           }
+      },
+      "routing": {
+        "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "org.ubb.books.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+        },
+        "routes": [
+        {
+          "pattern": "",
+          "name": "overview",
+          "target": "overview"
+        },
+        {
+          "pattern": "detail",
+          "name": "detail",
+          "target": "detail"
+        }
+        ],
+        "targets": {
+        "overview": {
+          "viewId": "overview",
+          "viewName": "Overview"
+        },
+        "detail": {
+          "viewId": "detail",
+          "viewName": "Detail"
+        }
+        }
       }
     }
   }

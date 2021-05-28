@@ -1,0 +1,65 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:l="sap.ui.layout" >
+   <Dialog
+      id="dialog"
+      title="{i18n>newBook}">
+
+      <VBox alignItems="Center" justifyContent="Center">
+
+            <l:VerticalLayout class="sapUiContentPadding" width="100%">
+
+                <Label text="ISBN" labelFor="isbn" />
+                <Input
+                    id="isbn"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Title" labelFor="title" />
+                <Input
+                    id="title"
+                    value="{/title}"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Author" labelFor="author" />
+                <Input
+                    id="author"
+                    value="{/author}"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Publishing date" labelFor="date" />
+                <Input
+                    id="date"
+                    value="{/date}"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Language" labelFor="language" />
+                <Input
+                    id="langauge"
+                    value="{/language}"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Number of books" labelFor="total" />
+                <Input
+                    id="total"
+                    value="{/total}"
+                    class="sapUiSmallMarginBottom"
+                    width='20%' />
+            
+            </l:VerticalLayout>
+
+        </VBox>
+
+      <beginButton>
+         <Button
+            text="{i18n>add}"
+            press=".onCloseDialog"/>
+      </beginButton>
+
+   </Dialog>
+</core:FragmentDefinition>

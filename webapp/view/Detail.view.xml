@@ -1,0 +1,53 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout">
+	<Page
+		title="{i18n>addPageTitle}">
+		
+        <VBox alignItems="Center" justifyContent="Center">
+
+            <l:VerticalLayout class="sapUiContentPadding" width="100%">
+
+                <Label text="ISBN" labelFor="isbn" />
+                <Input
+                    id="isbn"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Title" labelFor="title" />
+                <Input
+                    id="title"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Author" labelFor="author" />
+                <Input
+                    id="author"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Publishing date" labelFor="date" />
+                <Input
+                    id="date"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Language" labelFor="language" />
+                <Input
+                    id="langauge"
+                    class="sapUiSmallMarginBottom"
+                    width='100%' />
+
+                <Label text="Number of books" labelFor="total" />
+                <Input
+                    id="total"
+                    class="sapUiSmallMarginBottom"
+                    width='20%' />
+            
+            </l:VerticalLayout>
+
+        </VBox>
+
+	</Page>
+</mvc:View>

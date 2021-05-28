@@ -1,7 +1,7 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel"
- ], function (UIComponent, JSONModel) {
+    "./controller/Dialog"
+ ], function (UIComponent, Dialog) {
     "use strict";
     return UIComponent.extend("org.ubb.books.Component", {
        metadata : {
@@ -11,6 +11,19 @@ sap.ui.define([
           // call the init function of the parent
           UIComponent.prototype.init.apply(this, arguments);
           
-       }
+          // set dialog
+			this._dialog = new Dialog(this.getRootControl());
+         // create the views based on the url/hash
+			this.getRouter().initialize();
+		},
+
+		exit : function() {
+			this._dialog.destroy();
+			delete this._dialog;
+		},
+
+		openDialog : function () {
+			this._dialog.open();
+      }
     });
  });
