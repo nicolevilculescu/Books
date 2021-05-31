@@ -18,13 +18,30 @@ sap.ui.define([
 		open : function () {
 			var oView = this._oView;
 
+			var currentDate = new Date();
+			var oToDate = oView.byId('crOn')
+			oToDate.setDateValue(currentDate);
+
 			// create dialog lazily
 			if (!this.pDialog) {
 				var oFragmentController = {
-					onCloseDialog : function () {
-						oView.byId("dialog").close();
-						// var variabila = sap.ui.getCore().byId("isbn").getValue();
-						// MessageToast.show(variabila);
+					// onCloseDialog : function () {
+					// 	oView.byId("dialog").close();
+					// },
+					onInsert : function (oEvent) {
+						var oModel = oEvent.getSource().getModel(),
+							oDialogData = oModel.getData();
+						
+						oView.setBusy(true);
+
+						oModel.create("/BooksSet", oDialogData, {
+							success: function () {
+								oView.setBusy(false);
+							}.bind(this),
+							error: function () {
+								oView.setBusy(false);
+							}
+						});
 					}
 				};
 				// load asynchronous XML fragment
@@ -42,7 +59,6 @@ sap.ui.define([
 				oDialog.open();
 			});
 		}
-
 	});
 
 });

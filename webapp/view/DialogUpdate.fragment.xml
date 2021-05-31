@@ -3,8 +3,8 @@
    xmlns:core="sap.ui.core"
    xmlns:l="sap.ui.layout" >
    <Dialog
-      id="dialog"
-      title="{i18n>newBook}">
+      id="dialogUpdate"
+      title="{i18n>updateBook}">
 
       <VBox alignItems="Center" justifyContent="Center">
 
@@ -51,10 +51,10 @@
         </VBox>
 
         <beginButton>
-            <Button text="{i18n>cancel}" press=".onClose"/>
+            <Button text="{i18n>cancel}" press=".onCloseUpdate"/>
         </beginButton>
         <endButton>
-            <Button text="{i18n>add}" press=".onInsert"/>
+            <Button text="{i18n>update}" press=".onUpdate"/>
         </endButton>
 
    </Dialog>

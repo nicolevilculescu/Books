@@ -74,20 +74,29 @@
           "target": "overview"
         },
         {
-          "pattern": "detail",
-          "name": "detail",
-          "target": "detail"
+          "pattern": "maintainRecords",
+          "name": "maintainRecords",
+          "target": "maintainRecords"
+        },
+        {
+          "pattern": "checkedoutBooks",
+          "name": "checkedoutBooks",
+          "target": "checkedoutBooks"
         }
         ],
         "targets": {
-        "overview": {
-          "viewId": "overview",
-          "viewName": "Overview"
-        },
-        "detail": {
-          "viewId": "detail",
-          "viewName": "Detail"
-        }
+          "overview": {
+            "viewId": "overview",
+            "viewName": "Overview"
+          },
+          "maintainRecords": {
+            "viewId": "maintainRecords",
+            "viewName": "MaintainRecords"
+          },
+          "checkedoutBooks": {
+            "viewId": "checkedoutBooks",
+            "viewName": "CheckedoutBooks"
+          }
         }
       }
     }

@@ -5,11 +5,14 @@ sap.ui.define([
    "use strict";
    return Controller.extend("org.ubb.books.controller.App", {
 
-      onAddPress : function () {
-			this.getOwnerComponent().openDialog();
-			var variabila = this.getView().byId("isbn").value();
-			MessageToast.show(variabila);
-		}
+	onFirstPress: function () {
+		var oRouter = this.getOwnerComponent().getRouter();
+		oRouter.navTo("maintainRecords");
+	},
 
+	onSecondPress: function () {
+		var oRouter = this.getOwnerComponent().getRouter();
+		oRouter.navTo("checkedoutBooks");
+	}
    });
 });

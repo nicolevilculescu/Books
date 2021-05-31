@@ -5,13 +5,19 @@
 	<Page title="{i18n>homePageTitle}">
 		<content>
 
-			<Button 
-			    id="addButton" 
-				text="{i18n>add}"
-				press=".onAddPress"
+			<VBox alignItems="Center" justifyContent="Center">
+				<Button 
+			    id="first" 
+				text="{i18n>first}"
+				press=".onFirstPress"
 				class="sapUiSmallMarginEnd"/>
 
-			<mvc:XMLView viewName="org.ubb.books.view.BookList"/>
+			<Button 
+			    id="second" 
+				text="{i18n>second}"
+				press=".onSecondPress"
+				class="sapUiSmallMarginEnd"/>
+			</VBox>
 						
 		</content>
 	</Page>
