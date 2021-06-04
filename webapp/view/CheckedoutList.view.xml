@@ -6,10 +6,7 @@
 
    <Table id="idCheckedOutBooksTable"
 		items="{
-			path: '/CheckedSet',
-			sorter: {
-				path: 'CheckoutDate'
-			}
+			path: '/CheckedSet'
 		}"
 		growing="true"
 		growingThreshold="10">

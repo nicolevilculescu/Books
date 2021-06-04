@@ -21,7 +21,8 @@
 				press=".onAddPress"
 				class="sapUiSmallMarginEnd"/>
 				<ToolbarSpacer/>
-            <SearchField width="50%" search=".onFilterBooks"/>
+			<!-- <DateTimePicker id="date" width='20%' displayFormat="medium" search=".onFilterBooks"/> -->
+            <SearchField width="30%" search=".onFilterBooks"/>
          </Toolbar>
       </headerToolbar>
 

@@ -14,7 +14,8 @@
                 <Input
                     id="isbn"
                     class="sapUiSmallMarginBottom"
-                    width='100%' />
+                    width='100%'
+                    editable="false" />
 
                 <Label text="Title" labelFor="title" />
                 <Input

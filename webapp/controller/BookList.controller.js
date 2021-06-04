@@ -2,19 +2,32 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-    "sap/ui/core/Fragment"
- ], function (Controller, MessageToast, Filter, FilterOperator, Fragment) {
+    "sap/ui/core/Fragment",
+    "sap/ui/model/resource/ResourceModel"
+ ], function (Controller, MessageToast, Filter, Fragment, ResourceModel) {
     "use strict";
     return Controller.extend("org.ubb.books.controller.App", {
+        onInit : function () {
+            // set i18n model on view
+            var i18nModel = new ResourceModel({
+                bundleName: "org.ubb.books.i18n.i18n"
+            });
+            this.getView().setModel(i18nModel, "i18n");
+        },
+
        handleDelete : function (oEvent) {
           var sBookPath = oEvent.getParameter('listItem').getBindingContext().getPath();
+
+          var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
           this.getView().getModel().remove(sBookPath, {
             success: function() {
-                MessageToast.show("Book deleted!");
+                var sMsg = oBundle.getText("succsessfulDelete");
+                MessageToast.show(sMsg);
             },
             error: function() {
-                MessageToast.show("Error deleting the book!");
+                var sMsg = oBundle.getText("unsuccsessfulDelete");
+                MessageToast.show(sMsg);
             }
         });
        },
@@ -83,6 +96,8 @@ sap.ui.define([
 
 		onInsert : function (oEvent) {
 
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
             var currentDate = new Date(),
                 oView = this.getView(),
                 oModel = oEvent.getSource().getModel(),
@@ -103,12 +118,14 @@ sap.ui.define([
             oModel.create("/BooksSet", oData, {
                 success: function () {
                     oView.setBusy(false);
-                    MessageToast.show("Book inserted!");
+                    var sMsg = oBundle.getText("succsessfulInsert");
+                    MessageToast.show(sMsg);
                     this.byId("dialog").close();
                     location.reload();
                 }.bind(this),
                 error: function () {
-                    MessageToast.show("Error inserting the book!");
+                    var sMsg = oBundle.getText("unsuccsessfulInsert");
+                    MessageToast.show(sMsg);
                     oView.setBusy(false);
                 }
             });
@@ -134,62 +151,39 @@ sap.ui.define([
             
             oView.setBusy(true);
 
+            var oBundle = this.getView().getModel("i18n").getResourceBundle();
+
             oModel.update("/BooksSet('"+oIsbn+"')", oData, {
                 success: function () {
                     oView.setBusy(false);
                     that.byId("dialogUpdate").close();
                     location.reload();
+                    var sMsg = oBundle.getText("succsessfulUpdate");
+                    MessageToast.show(sMsg);
                 },
                 error: function () {
                     oView.setBusy(false);
+                    var sMsg = oBundle.getText("unsuccsessfulUpdate");
+                    MessageToast.show(sMsg);
                 }
             });
         },
 
        onFilterBooks : function (oEvent) {
+        // filter binding
+            var oTable = this.byId("idBooksTable"),
+                oBinding = oTable.getBinding("items"),
+                aFilters = [];
 
-        //    // build filter array
-        //    var aFilter = [];
-        //    var sQuery = oEvent.getParameter("query");
-        //    if (sQuery) {
-        //        aFilter.push(new Filter("Author", FilterOperator.Contains, sQuery));
-        //    }
-
-        //    // filter binding
-           var oTable = this.byId("idBooksTable");
-           var oBinding = oTable.getBinding("items");
-        //    oBinding.filter(aFilter);
-
-        //    var oBinding = [CONTROL].getBinding("items");
-            var aFilters = [];
-
+            aFilters.push(new Filter("BookISBN", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
             aFilters.push(new Filter("Title", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
             aFilters.push(new Filter("Author", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
+            // aFilters.push(new Filter("Language", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
 
             oBinding.filter(new Filter({
                 filters: aFilters,
                 and: true
             }));
-       },
-
-       handelBookSearch : function (oEvent) {
-        //    var oBookTable = this.getView().byId("idBooksTable");
-        //    var oItemBinding = oBookTable.getBinding("columns");
-        //    var sValue = oEvent.oSource.getValue();
-
-        //    var oNameFilter = sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains, sValue);
-        //    oItemBinding.filter(oNameFilter);
-        
-        // var oBinding = [CONTROL].getBinding("items");
-        // var aFilters = [];
-
-        // aFilters.push(new Filter("Title", sap.ui.model.FilterOperator.Contains, [VALUE]));
-        // aFilters.push(new Filter("Author", sap.ui.model.FilterOperator.Contains, [VALUE]));
-
-        // oBinding.filter(new Filter({
-        //     filters: aFilters,
-        //     and: true
-        // }));
-        }
+       }
     });
  });
