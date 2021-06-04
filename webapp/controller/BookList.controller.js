@@ -1,10 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-	"sap/ui/model/Filter",
     "sap/ui/core/Fragment",
     "sap/ui/model/resource/ResourceModel"
- ], function (Controller, MessageToast, Filter, Fragment, ResourceModel) {
+ ], function (Controller, MessageToast, Fragment, ResourceModel) {
     "use strict";
     return Controller.extend("org.ubb.books.controller.App", {
         onInit : function () {
@@ -167,23 +166,6 @@ sap.ui.define([
                     MessageToast.show(sMsg);
                 }
             });
-        },
-
-       onFilterBooks : function (oEvent) {
-        // filter binding
-            var oTable = this.byId("idBooksTable"),
-                oBinding = oTable.getBinding("items"),
-                aFilters = [];
-
-            aFilters.push(new Filter("BookISBN", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
-            aFilters.push(new Filter("Title", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
-            aFilters.push(new Filter("Author", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
-            // aFilters.push(new Filter("Language", sap.ui.model.FilterOperator.Contains, oEvent.oSource.getValue()));
-
-            oBinding.filter(new Filter({
-                filters: aFilters,
-                and: true
-            }));
-       }
+        }
     });
  });

@@ -1,12 +1,10 @@
 <mvc:View
-	controllerName="org.ubb.books.controller.BookList"
+	controllerName="org.ubb.books.controller.BooksForCheckout"
    	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
 
-   <Table id="idBooksTable"
-   		mode="Delete"
-        delete="handleDelete"
+   <Table id="idBooksTable2"
 		items="{
 			path: '/BooksSet'
 		}"
@@ -15,11 +13,9 @@
 	
 		<headerToolbar>
          <Toolbar>
-			<Button 
-			    id="addButton" 
-				text="{i18n>add}"
-				press=".onAddPress"
-				class="sapUiSmallMarginEnd"/>
+            <Button text="Checked-out books" press="openChecked"></Button>
+			<ToolbarSpacer/>
+            <SearchField width="30%" search=".onFilterBooks"/>
          </Toolbar>
       </headerToolbar>
 
@@ -42,21 +38,7 @@
 			<Column>
 				<Text text="Total number of books" />
 			</Column>
-			<Column>
-				<Text text="Created by" />
-			</Column>
-			<Column>
-				<Text text="Created on" />
-			</Column>
-			<Column>
-				<Text text="Changed by" />
-			</Column>
-			<Column>
-				<Text text="Changed on" />
-			</Column>
-			<Column>
-				<Text text="Update/Delete" />
-			</Column>
+			<Column></Column>
 		</columns>
 		<items>
 			<ColumnListItem>
@@ -79,30 +61,8 @@
 					<Text text="{Language}" />
 					<Text text="{= parseInt(${Available}) }" />
 					<Text text="{= parseInt(${TotalNumber}) }" />
-					<Text text="{CreatedBy}" />
-					<Text text="{
-							path: 'CreatedOn',
-							type: 'sap.ui.model.type.DateTime',
-							formatOptions: {
-    							pattern: 'dd.MM.yyyy'
-  							},
-  							constraints: {
-    							displayFormat: 'Date'
-  							}
-					}" />
-					<Text text="{ChangedBy}" />
-					<Text text="{
-						path: 'ChangedOn',
-							type: 'sap.ui.model.type.DateTime',
-							formatOptions: {
-    							pattern: 'dd.MM.yyyy'
-  							},
-  							constraints: {
-    							displayFormat: 'Date'
-  							}
-					}" />
 					<HBox>
-						<Button icon="sap-icon://edit" press="handleEdit"></Button>
+						<Button text="Checkout" press="handleCheckout"></Button>
 					</HBox>
 				</cells>
 			</ColumnListItem>

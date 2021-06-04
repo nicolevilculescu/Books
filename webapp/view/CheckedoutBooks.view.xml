@@ -4,7 +4,7 @@
 	<Page
 		title="{i18n>second}">
 		<content>
-			<mvc:XMLView viewName="org.ubb.books.view.CheckedoutList"/>
+			<mvc:XMLView viewName="org.ubb.books.view.BooksForCheckout"/>
 		</content>
 	</Page>
 </mvc:View>
